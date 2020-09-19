@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragmentsAdmin :: head(~{::title})">
+    <meta charset="UTF-8">
+    <!-- 方便手机端预览 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>分类管理</title>
+</head>
+<body>
+<!-- stackable ：适配小屏幕 -->
+
+<!-- 导航 -->
+<nav th:replace="admin/_fragmentsAdmin :: menu(2)"></nav>
+
+<!--二级导航-->
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="/admin/types/input" class="item">新增</a>
+            <a href="/admin/types" class="active item">列表</a>
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- 中间内容 -->
+<div class="m-container-small m-padded-tb-big-3">
+    <div class="ui container">
+
+        <!--表格 celled:添加网格-->
+        <table class="ui compact teal table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+
+            <tbody id="page">
+            </tbody>
+            <!--分页-->
+            <tfoot>
+            <tr>
+                <th colspan="6">
+                    <div class="ui mini left floated pagination menu" id="pages">
+
+                    </div>
+                    <a href="/admin/types/input" class="ui mini right floated teal basic button">新增</a>
+                </th>
+            </tr>
+            </tfoot>
+
+        </table>
+    </div>
+</div>
+
+<br>
+<!-- 底部-->
+<footer th:replace="admin/_fragmentsAdmin :: footer">
+</footer>
+
+<script>
+    //默认调用分页查询方法,并且是第一页
+    page(1);
+    //分页内容显示功能
+    function page(pageNum){
+        $.get("types/page",{pageNum:pageNum},function (pagelist) {
+            var html = '';
+                /* 内容列表*/
+               for (var i = 0; i < pagelist.size; i++) {
+                   html+='<tr>\n' +
+                       '<td>'+(i+1)+'</td>\n' +
+                       '<td>'+pagelist.list[i].name+'</td>\n' +
+                       ' <td>\n' +
+                       '<a href="/admin/types/updateInput/'+pagelist.list[i].id+'" class="ui mini teal basic button">编辑</a>\n' +
+                       '<a onclick="remove('+pagelist.list[i].id+')" class="ui mini red basic button">删除</a>\n' +
+                       '</td>\n' +
+                       '</tr>'
+                }
+            $("#page").html(html);
+
+            var html2 = '';
+            /*分页组件*/
+            if (pageNum == 1){  /*上一页*/
+                html2 += '<a class="icon item""><i class="left chevron icon"></i></a>'
+            }else {
+                html2 += '<a class="icon item" onclick="page('+(pageNum-1)+')"><i class="left chevron icon"></i></a>'
+            }
+
+            for (var pp = 1; pp <= pagelist.pages ; pp++) {
+                if (pp == pageNum){ //当页面的码数和pageNum的码数一致时,就让它为选中状态
+                    html2 += '<a class="item active" onclick="page('+pp+')">'+pp+'</a>';
+                }else {
+                    html2 += '<a class="item" onclick="page('+pp+')">'+pp+'</a>';
+                }
+            }
+
+            if (pageNum == pagelist.pages){
+                html2 += ' <a class="icon item">'+'<i class="right chevron icon"></i>'+'</a>'
+            }else {
+                html2 += ' <a class="icon item" onclick="page('+(pageNum+1)+')">'+'<i class="right chevron icon"></i>'+'</a>'
+            }
+
+            html2 += '<a class="item">共'+pagelist.pages+'页'+pagelist.total+'条数据</a>'
+            $("#pages").html(html2);
+
+        },"json")
+    }
+    //删除方法
+    function remove(id){
+        if (confirm("确定删除吗?")) {
+            $.get("types/remove", {id: id}, function (flag) {
+                if (flag){
+                    alert("删除成功")
+                    location.reload();
+                }else {
+                    alert("删除失败,分类已被博客关联")
+                }
+            },"json");
+        }
+    }
+
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide")
+    });
+    /*下拉列表组件*/
+    $('.ui.dropdown').dropdown({
+        on: "hover"  /*鼠标停留就显示(默认是点击)*/
+    });
+    //消息提示关闭的初始化
+    $('.message .close').on('click',function () {
+        $(this).closest('.message').transition('fade');
+    })
+</script>
+
+</body>
+</html>

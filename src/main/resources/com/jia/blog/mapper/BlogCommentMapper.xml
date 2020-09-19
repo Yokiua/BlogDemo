@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jia.blog.mapper.BlogCommentMapper">
+
+
+    <!-- 删除评论 (动态sql)-->
+    <delete id="removeComment" parameterType="comment">
+        DELETE FROM t_comment
+        <where>
+            <if test="id!=null">
+                id = #{id}
+            </if>
+            <if test="parent_comment_id==null">
+                and parent_comment_id is null
+            </if>
+            <if test="parent_comment_id!=null">
+                and parent_comment_id = #{parent_comment_id}
+            </if>
+        </where>
+    </delete>
+
+</mapper>

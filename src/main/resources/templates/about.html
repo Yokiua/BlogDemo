@@ -1,0 +1,364 @@
+﻿<!DOCTYPE HTML>
+<html class="no-js" lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="author" content="smartit-source">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+		<!-- title here -->
+		<title>关于我</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+		<!--引入animate动画的css-->
+		<link rel="stylesheet" href="../static/css/animate.css">
+		<!-- Favicon and Touch Icons -->
+		<link rel="shortcut icon" href="../static/assets/images/fav.png">
+		<!-- Place favicon.ico in the root directory -->
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="../static/assets/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../static/assets/css/flaticon.css">
+		<!-- Plugin CSS -->
+		<link rel="stylesheet" href="../static/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/assets/css/animate.css">
+		<link rel="stylesheet" href="../static/assets/css/magnific-popup.css">
+		<link rel="stylesheet" href="../static/assets/css/owl.carousel.css">
+		<link rel="stylesheet" href="../static/assets/css/owl.theme.css">
+		<link rel="stylesheet" href="../static/assets/css/owl.transitions.css">
+		<link rel="stylesheet" href="../static/assets/css/jquery.barfiller.css">
+		<!--Theme custom css -->
+		<link rel="stylesheet" href="../static/assets/css/style.css">
+		<!--Theme Responsive css-->
+		<link rel="stylesheet" href="../static/assets/css/responsive.css" />
+		<script src="../static/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	</head>
+<body>
+	<!-- 页眉区域从这里开始 -->
+	<header class="header-area" id="sticky">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2 col-xs-6">
+					<div class="log-area">
+						<a href="/"><img src="../static/assets/images/logo.png" style="margin-top: 7px !important;" alt=""></a>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="menu-area white">
+						<nav>
+							<ul>
+								<li class="sub"><a href="/">首页 <span class="fa fa-angle-down"></span></a>
+									<ul class="sub-menu">
+										<li><a href="/MyBlog/types">分类</a></li>
+										<li><a href="/MyBlog/tags">标签</a></li>
+										<li><a href="/MyBlog/archives">归档</a></li>
+										<li><a href="/MyBlog/comment">留言板</a></li>
+										<li class="active"><a href="/MyBlog/about">关于我</a></li>
+									</ul>
+								</li>
+								<li><a href="/MyBlog/types">分类</a></li>
+								<li><a href="/MyBlog/tags">标签</a></li>
+								<li><a href="/MyBlog/archives">归档</a></li>
+								<li><a href="/MyBlog/comment">留言板</a></li>
+								<li class="active"><a href="/MyBlog/about">关于我</a></li>
+								<!--搜索框-->
+								<li>
+									<div class="right m-item item">
+										<form name="search" action="/search" method="get" data-pjax class="myForm"  target="_blank">
+											<div class="ui icon inverted input">
+												<input type="text" name="query" placeholder="Search...." class="queryText" style="opacity: 0.7 !important;">
+												<i class="query search link icon" onclick="formClick()"></i>
+											</div>
+										</form>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<div class="col-md-1 col-xs-6">
+					<div class="humbargar-area">
+						<!---->
+						<div class="menu-icon text-right">
+							<span class="flaticon-menu humbargar color"></span>
+						</div>
+						<div class="close-area">
+							<span class="close"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- 菜单区从这里开始 -->
+	<div class="sidebar-menu ">
+		<div class="close-area">
+			<span class="close"><i class="icon fa fa-times-circle"></i></span>
+		</div>
+		<div class="main-menu">
+			<nav>
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/MyBlog/types">分类</a></li>
+					<li><a href="/MyBlog/tags">标签</a></li>
+					<li><a href="/MyBlog/archives">归档</a></li>
+					<li><a href="/MyBlog/comment">留言区</a></li>
+					<li class="active"><a href="/MyBlog/about">关于我</a></li>
+					<li>
+						<div class="right m-item item">
+							<form name="search" action="/search" method="get" data-pjax class="myForm" target="_blank">
+								<div class="ui icon inverted  input m-margin-tb-tiny">
+									<input type="text" name="query" placeholder="Search...." class="queryText">
+									<i class="query search link icon" onclick="formClick()"></i>
+								</div>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- 大图区域从这里开始	 -->
+	<div class="breadcrumb-area" id="header" style="background-image: url('../static/imges/about_bg.jpg');height: 30%">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="breadcrumb-title">
+						<h2>关于我</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="profile-area section animate__animated animate__pulse"  id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12 ">
+					<div class="profile-img box-shadow">
+						<img src="../static/imges/me.jpg" alt="profile">
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12">
+					<div class="profile-info">
+						<div class="profile-name">
+							<h2>水饺君</h2>
+						</div>
+						<div class="profile-profason">
+							<h4>一个为工作而发愁的带学生</h4>
+						</div>
+						<div class="frofile-detels table-responsive">
+							<table>
+								<tbody>
+									<tr>
+										<td><span>Name</span></td>
+										<td> <b>:</b> </td>
+										<td>水饺皮</td>
+									</tr>
+									<tr>
+										<td><span>技术栈</span> </td>
+										<td> <b>:</b> </td>
+										<td>Java Html Css JavaScript Ajax Vue Json MySQL Redis...</td>
+									</tr>
+									<tr>
+										<td><span>框架</span></td>
+										<td> <b>:</b> </td>
+										<td>Spring SpringMVC SpringBoot MyBatis...</td>
+									</tr>
+									<tr>
+										<td><span>Email</span></td>
+										<td> <b>:</b> </td>
+										<td><a>a1923517480@gmail.com</a></td>
+									</tr>
+									<tr>
+										<td><span>Wechat</span> </td>
+										<td> <b>:</b> </td>
+										<td><a>18625306732</a></td>
+									</tr>
+									<tr>
+										<td><span>QQ</span> </td>
+										<td> <b>:</b> </td>
+										<td><a>1923517480</a></td>
+									</tr>
+									<tr>
+										<td><span>博客总数量</span></td>
+										<td> <b>:</b> </td>
+										<td><a v-text="blogCount"></a></td>
+									</tr>
+									<tr>
+										<td><span>博客总浏览</span></td>
+										<td> <b>:</b> </td>
+										<td><a v-text="viewsCount"></a></td>
+									</tr>
+									<tr>
+										<td><span>网站总浏览</span></td>
+										<td> <b>:</b> </td>
+										<td><a v-text="myBlogCount"></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="leaf-left">
+			<img src="../static/assets/images/leaf-left.png" alt="leaf-right">
+		</div>
+		<div class="leaf-right">
+			<img src="../static/assets/images/leaf-right.png" alt="leaf-right">
+		</div>
+	</div>
+	<footer class="footer-area" id="footer">
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="footer-widget widget-text">
+							<div class="footer-logo">
+								<h2><a href="#">Yokiua </a></h2>
+							</div>
+							<div class="widget-content">
+								<p>乘上与平时相反的列车，为了去见从未见过的风景。 当你无法回头的时候，才是真正的旅途。 人性中是有恶意的，不要以恶意去应对恶意，昂首挺胸吧。 </p>
+							</div>
+						</div>
+					</div>
+					<!--展示最新的文章-->
+					<div class="col-md-3">
+						<div class="footer-widget widget-recent-post">
+							<div class="widget-title">
+								<h3>Recent Post</h3>
+							</div>
+							<div class="recent-post-list">
+								<!--列表-->
+								<div class="single-post" v-for="blog in newBlog.list">
+									<p><a v-bind:href="['/MyBlog/blog?id='+blog.id]">{{blog.title}}</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="footer-widget widget-Subscribe">
+							<div class="widget-title">
+								<h3>Contact Me</h3>
+							</div>
+							<div >
+								<img src="../static/imges/wechat.jpg" alt="wechat">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="copyright-area">
+							<p>&copy; 2020 Yokiua . All rights Reserved.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="footer-right text-right">
+							<p>By <a href="/MyBlog/about" title="bootstrapmb">Jia</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="../static/assets/js/vendor/jquery-1.12.0.min.js"></script>
+	<script src="../static/assets/js/plugins.js"></script>
+	<script src="../static/assets/js/Popper.js"></script>
+	<script src="../static/assets/js/bootstrap.min.js"></script>
+	<script src="../static/assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="../static/assets/js/owl.carousel.min.js"></script>
+	<script src="../static/assets/js/isotope.pkgd.min.js"></script>
+	<script src="../static/assets/js/imagesloaded.pkgd.min.js"></script>
+	<script src="../static/assets/js/scrollup.js"></script>
+	<script src="../static/assets/js/jquery.counterup.min.js"></script>
+	<script src="../static/assets/js/waypoints.min.js"></script>
+	<script src="../static/assets/js/jquery.appear.js"></script>
+	<script src="../static/assets/js/jquery.barfiller.js"></script>
+	<script src="../static/assets/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!--live2D-->
+	<script src="https://cdn.jsdelivr.net/gh/yremp/live2d@1.0/autoload.js"></script>
+	<!--搜索框校验 -->
+	<script>
+		/*表单校验*/
+		$('.myForm').form({
+			fields: {
+				query: {
+					identifier: 'query',
+					rules: [{
+						type: 'empty',
+					}]
+				}
+			}
+		});
+		function formClick(){
+			var query = $(".queryText").val();
+			if (query != ""){
+				document.forms['search'].submit()
+			}else {
+				alert("请输入搜索内容")
+			}
+		}
+	</script>
+	<!--Vue代码块-->
+	<script>
+		var vue = new Vue({
+			el:"#about",
+			data:{
+				viewsCount:"",
+				blogCount:"",
+				myBlogCount:""
+			},
+			methods:{
+				getViewsCount:function () {
+					var thar = this;
+					$.ajaxSettings.async = false;
+					$.get("blog/viewsCount",{},function (count) {
+						thar.viewsCount = count;
+					});
+					$.ajaxSettings.async = true;
+				},
+				getBlogCount:function () {
+					var thar = this;
+					$.ajaxSettings.async = false;
+					$.get("blog/blogCount",{},function (count) {
+						thar.blogCount = count;
+					})
+					$.ajaxSettings.async = true;
+				},
+				getMyBlogCount:function () {
+					var thar = this;
+					$.get("about/myBlogCount",{},function (count) {
+						thar.myBlogCount = count;
+					})
+				}
+			}
+		});
+		vue.getViewsCount();
+		vue.getBlogCount();
+		vue.getMyBlogCount();
+		newBlog = new Vue({
+			el:"#footer",
+			data:{
+				newBlog:""
+			},
+			methods:{
+				getNewBlog:function () {
+					var thar = this;
+					$.get("index/sortDateBlog",{pageSize:3},function (SortDateBlog) {
+						thar.newBlog = SortDateBlog;
+					},"json");
+				}
+			}
+		});
+		newBlog.getNewBlog();
+	</script>
+</body>
+</html>

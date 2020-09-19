@@ -1,0 +1,370 @@
+﻿<!DOCTYPE HTML>
+<html class="no-js" lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="author" content="smartit-source">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+		<!-- title here -->
+		<title>归档</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+		<!--引入animate动画的css-->
+		<link rel="stylesheet" href="../static/css/animate.css">
+		<!-- Favicon and Touch Icons -->
+		<link rel="shortcut icon" href="../static/assets/images/fav.png">
+		<!-- Place favicon.ico in the root directory -->
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="../static/assets/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../static/assets/css/flaticon.css">
+		<!-- Plugin CSS -->
+		<link rel="stylesheet" href="../static/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/assets/css/animate.css">
+		<link rel="stylesheet" href="../static/assets/css/magnific-popup.css">
+		<link rel="stylesheet" href="../static/assets/css/owl.carousel.css">
+		<link rel="stylesheet" href="../static/assets/css/owl.theme.css">
+		<link rel="stylesheet" href="../static/assets/css/owl.transitions.css">
+		<link rel="stylesheet" href="../static/assets/css/jquery.barfiller.css">
+		<!--Theme custom css -->
+		<link rel="stylesheet" href="../static/assets/css/style.css">
+		<!--Theme Responsive css-->
+		<link rel="stylesheet" href="../static/assets/css/responsive.css" />
+		<script src="../static/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	</head>
+	<body>
+	<!-- 页眉区域从这里开始 -->
+	<header class="header-area" id="sticky">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2 col-xs-6">
+					<div class="log-area">
+						<a href="/"><img src="../static/assets/images/logo.png"style=" margin-top: 7px !important;" alt=""></a>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="menu-area white">
+						<nav>
+							<ul>
+								<li class="sub"><a href="/">首页 <span class="fa fa-angle-down"></span></a>
+									<ul class="sub-menu">
+										<li><a href="/MyBlog/types">分类</a></li>
+										<li><a href="/MyBlog/tags">标签</a></li>
+										<li class="active"><a href="/MyBlog/archives">归档</a></li>
+										<li><a href="/MyBlog/comment">留言板</a></li>
+										<li><a href="/MyBlog/about">关于我</a></li>
+									</ul>
+								</li>
+								<li><a href="/MyBlog/types">分类</a></li>
+								<li><a href="/MyBlog/tags">标签</a></li>
+								<li class="active"><a href="/MyBlog/archives">归档</a></li>
+								<li><a href="/MyBlog/comment">留言板</a></li>
+								<li><a href="/MyBlog/about">关于我</a></li>
+								<!--搜索框-->
+								<li>
+									<div class="right m-item item">
+										<form name="search" action="/search" method="get" data-pjax class="myForm"  target="_blank">
+											<div class="ui icon inverted input">
+												<input type="text" name="query" placeholder="Search...." class="queryText" style="opacity: 0.7 !important;">
+												<i class="query search link icon" onclick="formClick()"></i>
+											</div>
+										</form>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<div class="col-md-1 col-xs-6">
+					<div class="humbargar-area">
+						<!---->
+						<div class="menu-icon text-right">
+							<span class="flaticon-menu humbargar color"></span>
+						</div>
+						<div class="close-area">
+							<span class="close"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- 菜单区从这里开始 -->
+	<div class="sidebar-menu ">
+		<div class="close-area">
+			<span class="close"><i class="icon fa fa-times-circle"></i></span>
+		</div>
+		<div class="main-menu">
+			<nav>
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/MyBlog/types">分类</a></li>
+					<li><a href="/MyBlog/tags">标签</a></li>
+					<li class="active"><a href="/MyBlog/archives">归档</a></li>
+					<li><a href="/MyBlog/comment">留言区</a></li>
+					<li><a href="/MyBlog/about">关于我</a></li>
+					<li>
+						<div class="right m-item item">
+							<form name="search" action="/search" method="get" data-pjax class="myForm" target="_blank">
+								<div class="ui icon inverted  input m-margin-tb-tiny">
+									<input type="text" name="query" placeholder="Search...." class="queryText">
+									<i class="query search link icon" onclick="formClick()"></i>
+								</div>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- 大图区域从这里开始	 -->
+	<div class="breadcrumb-area" id="header" style="background-image: url('../static/imges/backimg1.jpg');height: 30%">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="breadcrumb-title">
+						<h2>博客归档</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 中间内容 -->
+	<div class="profile-area section animate__animated animate__pulse" id="archives">
+		<div class="container">
+			<!--共xx条博客-->
+			<div class="row mt-110" style="margin-top: 10px !important;">
+				<div class="col-lg-12 col-md-12 ">
+					<div class="resume-title">
+						<h3 style="margin: 0 auto;vertical-align: center;text-align: center;align-content: center" >共&nbsp;<font v-text="blogCount"></font>&nbsp;篇博客</h3>
+					</div>
+				</div>
+			</div>
+			<!--归档-->
+			<div class="row mt-110">
+				<div class="col-lg-12 col-md-12 ">
+					<div class="single-resume education-resume box-shadow">
+						<div class="resume-title">
+							<h3>2020</h3>
+						</div>
+						<div class="education-list">
+							<!--博客列表-->
+							<div class="single-education" v-for="(blog,index) in blogList2020">
+								<a v-bind:href="['/MyBlog/blog?id='+blog.id]" target="_blank">
+									<div class="row">
+										<div class="col-md-4">
+											<p><span v-text="index+1"></span><font v-text="blog.title"></font></p>
+										</div>
+										<div class="col-md-4">
+											<p class="midden"><span class="flaticon-college-graduation"></span><font v-text="blog.typeName"></font></p>
+										</div>
+										<div class="col-md-4 text-right">
+											<p><span class="flaticon-calendar"></span><font v-text="blog.createTime"></font></p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-110">
+				<div class="col-lg-12 col-md-12 ">
+					<div class="single-resume work-resume box-shadow">
+						<div class="resume-title">
+							<h3>2021</h3>
+						</div>
+						<div class="work-list">
+							<!--博客列表-->
+							<div class="single-work" v-for="(blog,index) in blogList2021">
+								<a v-bind:href="['/MyBlog/blog?id='+blog.id]" target="_blank">
+									<div class="row">
+										<div class="col-md-4">
+											<p><span v-text="index+1"></span><font v-text="blog.title"></font></p>
+										</div>
+										<div class="col-md-4">
+											<p class="midden"><span class="flaticon-college-graduation"></span><font v-text="blog.typeName"></font></p>
+										</div>
+										<div class="col-md-4 text-right">
+											<p><span class="flaticon-calendar"></span><font v-text="blog.createTime"></font></p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- leaf left area start here	 -->
+		<div class="leaf-left">
+			<img src="../static/assets/images/leaf-left.png" alt="leaf-right">
+		</div>
+		<!-- leaf left area end here	 -->
+		<!-- leaf right area start here	 -->
+		<div class="leaf-right">
+			<img src="../static/assets/images/leaf-right.png" alt="leaf-right">
+		</div>
+		<!-- leaf right area end here	 -->
+	</div>
+
+	<footer class="footer-area animate__animated animate__pulse" id="footer">
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="footer-widget widget-text">
+							<div class="footer-logo">
+								<h2><a href="#">Yokiua </a></h2>
+							</div>
+							<div class="widget-content">
+								<p>乘上与平时相反的列车，为了去见从未见过的风景。 当你无法回头的时候，才是真正的旅途。 人性中是有恶意的，不要以恶意去应对恶意，昂首挺胸吧。 </p>
+							</div>
+						</div>
+					</div>
+					<!--展示最新的文章-->
+					<div class="col-md-3">
+						<div class="footer-widget widget-recent-post">
+							<div class="widget-title">
+								<h3>Recent Post</h3>
+							</div>
+							<div class="recent-post-list">
+								<!--列表-->
+								<div class="single-post" v-for="blog in newBlog.list">
+									<p><a v-bind:href="['/MyBlog/blog?id='+blog.id]">{{blog.title}}</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="footer-widget widget-Subscribe">
+							<div class="widget-title">
+								<h3>Contact Me</h3>
+							</div>
+							<div >
+								<img src="../static/imges/wechat.jpg" alt="wechat">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="copyright-area">
+							<p>&copy; 2020 Yokiua . All rights Reserved.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="footer-right text-right">
+							<p>By <a href="/MyBlog/about" title="bootstrapmb">Jia</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../static/assets/js/vendor/jquery-1.12.0.min.js"></script>
+	<script src="../static/assets/js/plugins.js"></script>
+	<script src="../static/assets/js/Popper.js"></script>
+	<script src="../static/assets/js/bootstrap.min.js"></script>
+	<script src="../static/assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="../static/assets/js/owl.carousel.min.js"></script>
+	<script src="../static/assets/js/isotope.pkgd.min.js"></script>
+	<script src="../static/assets/js/imagesloaded.pkgd.min.js"></script>
+	<script src="../static/assets/js/scrollup.js"></script>
+	<script src="../static/assets/js/jquery.counterup.min.js"></script>
+	<script src="../static/assets/js/waypoints.min.js"></script>
+	<script src="../static/assets/js/jquery.appear.js"></script>
+	<script src="../static/assets/js/jquery.barfiller.js"></script>
+	<script src="../static/assets/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+	<!--live2D-->
+	<script src="https://cdn.jsdelivr.net/gh/yremp/live2d@1.0/autoload.js"></script>
+	<!--搜索框校验 -->
+	<script>
+		/*表单校验*/
+		$('.myForm').form({
+			fields: {
+				query: {
+					identifier: 'query',
+					rules: [{
+						type: 'empty',
+					}]
+				}
+			}
+		});
+		function formClick(){
+			var query = $(".queryText").val();
+			if (query != ""){
+				document.forms['search'].submit()
+			}else {
+				alert("请输入搜索内容")
+			}
+		}
+	</script>
+	<!--Vue代码块-->
+	<script>
+		var vue = new Vue({
+			el:"#archives",
+			data:{
+				blogCount:"",
+				blogList2020:"",
+				blogList2021:""
+			},
+			methods:{
+				getBlogCount:function () { //获取所有发布博客的数量
+					var thar = this;
+					$.get("archives/BlogCount",{},function (blogCount) {
+						thar.blogCount = blogCount;
+					},"json");
+				},
+				getBlogsData2020:function (dataYY,) { //根据年份查询(2020)
+					var thar = this;
+					//同步请求
+					$.ajaxSettings.async = false;
+					$.get("archives/findDataYY",{dataYY:dataYY},function (blogList) {
+						thar.blogList2020 = blogList;
+					},"json");
+					$.ajaxSettings.async = true;
+				},
+				getBlogsData2021:function (dataYY,) { //根据年份查询(2019)
+					var thar = this;
+					//同步请求
+					$.ajaxSettings.async = false;
+					$.get("archives/findDataYY",{dataYY:dataYY},function (blogList) {
+						thar.blogList2021 = blogList;
+					},"json");
+					$.ajaxSettings.async = true;
+				},
+			}
+		});
+		newBlog = new Vue({
+			el:"#footer",
+			data:{
+				newBlog:""
+			},
+			methods:{
+				getNewBlog:function () {
+					var thar = this;
+					$.get("index/sortDateBlog",{pageSize:3},function (SortDateBlog) {
+						thar.newBlog = SortDateBlog;
+					},"json");
+				}
+			}
+		})
+		newBlog.getNewBlog();
+		vue.getBlogCount();
+		vue.getBlogsData2020("2020")
+		vue.getBlogsData2021("2021")
+	</script>
+
+	</body>
+</html>

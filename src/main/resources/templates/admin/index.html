@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragmentsAdmin :: head(~{::title})">
+    <meta charset="UTF-8">
+    <!-- 方便手机端预览 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>博客管理</title>
+</head>
+<body>
+<!-- stackable ：适配小屏幕 -->
+
+<!-- 导航 -->
+<nav th:replace="admin/_fragmentsAdmin :: menu(0)"></nav>
+
+<!--二级导航-->
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" class="item">发布</a>
+            <a href="#" class="active item">列表</a>
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- 中间内容 -->
+<div class="m-container-small m-padded-tb-big-3">
+    <div class="ui container">
+        <div class="ui success large message">
+            <h2>hi</h2>
+            <p>欢迎登录</p>
+        </div>
+    </div>
+</div>
+
+<br>
+<!-- 底部-->
+<footer th:replace="admin/_fragmentsAdmin :: footer">
+</footer>
+
+<script>
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide")
+    });
+    /*下拉列表组件*/
+    $('.ui.dropdown').dropdown({
+        on: "hover"  /*鼠标停留就显示(默认是点击)*/
+    });
+</script>
+
+</body>
+</html>

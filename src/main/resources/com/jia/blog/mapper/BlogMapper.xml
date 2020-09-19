@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jia.blog.mapper.BlogMapper">
+
+
+    <!-- 多对一查询 -->
+
+    <!-- blog 实体类 -->
+    <resultMap id="blogMap" type="blog">
+        <id column="id" property="id"/>
+        <result column="commentabled" property="commentabled"/>
+        <result column="content" property="content"/>
+        <result column="createTime" property="createTime"/>
+        <result column="firstPicture" property="firstPicture"/>
+        <result column="flag" property="flag"/>
+        <result column="published" property="published"/>
+        <result column="recommend" property="recommend"/>
+        <result column="title" property="title"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="views" property="views"/>
+        <result column="type_id" property="type_id"/>
+        <result column="user_id" property="user_id"/>
+        <result column="tagIds" property="tagIds"/>
+        <result column="description" property="description"/>
+        <!-- blog 实体中的 type(分类) 多对一，多个blog里面有一个type-->
+        <association property="type">
+            <result property="id" column="tid"/>
+            <result property="name" column="tname"/>
+        </association>
+
+    </resultMap>
+
+    <!-- 查询blog表的全部(包括对应的type表内容)-->
+    <select id="getAllBlog" resultMap="blogMap">
+         select *,t.id tid,t.name tname from t_blog b,t_type t where b.type_id = t.id
+    </select>
+
+
+    <!--条件复杂查询,共三个
+        标题(title) 分类(type_id) 推荐(recommend)
+          三张表 t_blog t_type t_tag
+    -->
+    <select id="getBlogAndQuery" parameterType="blog" resultMap="blogMap">
+        select *,t.id tid,t.name tname from t_blog b,t_type t where 1=1
+        <!--<where>-->
+            <if test="title!=null">
+                and b.title = #{title}
+            </if>
+            <if test="type_id!=null">
+                and b.type_id = #{type_id}
+            </if>
+            <if test="recommend==true">
+                and b.recommend = 1
+            </if>
+        <!--</where>-->
+        and b.type_id = t.id
+    </select>
+
+    <!--查询所有发布的博客-->
+    <select id="getBlogByPublished" resultMap="blogMap">
+        select *,t.id tid,t.name tname from t_blog b,t_type t where b.published=1 and b.type_id = t.id ORDER BY updateTime DESC
+    </select>
+
+    <!-- 查询一个博客(根据id)-->
+    <select id="getBlog" parameterType="long" resultMap="blogMap">
+        select *,t.id tid,t.name tname from t_blog b,t_type t where b.id=#{id} and b.type_id = t.id
+    </select>
+</mapper>

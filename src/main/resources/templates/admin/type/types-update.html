@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragmentsAdmin :: head(~{::title})">
+    <meta charset="UTF-8">
+    <!-- 方便手机端预览 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>分类新增</title>
+</head>
+<body>
+<!-- stackable ：适配小屏幕 -->
+
+<!-- 导航 -->
+<nav th:replace="admin/_fragmentsAdmin :: menu(2)"></nav>
+<br>
+<br>
+<br>
+
+<!-- 中间内容 -->
+<div class="m-container-small m-padded-tb-big-3">
+    <div class="ui container">
+        <form action="#" method="post" class="ui form"
+        th:object="${type}" th:action="@{/admin/types/updateType/{id}(id=*{id})}">
+            <input type="hidden" name="id" th:value="*{id}">
+            <div class="field">
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">名称</label>
+                    <input type="text" name="name" placeholder="分类名称" th:value="*{name}">
+                </div>
+            </div>
+
+            <!--表单校验的提示 error message : 默认就会寻找错误信息-->
+            <div class="ui error message"></div>
+
+            <!--按钮(返回保存发布)-->
+            <div class="ui right aligned container">
+                <!-- window.history.go(-1) : 返回上一张页面-->
+                <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+                <button class="ui teal button">提交</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<!-- 底部 -->
+<footer th:replace="admin/_fragmentsAdmin :: footer"></footer>
+
+<!-- editormd 的引入-->
+<script src="../../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+
+<script>
+
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide")
+    });
+    /*下拉列表组件*/
+    $('.ui.dropdown').dropdown({
+        on: "hover"  /*鼠标停留就显示(默认是点击)*/
+    });
+    /*表单校验*/
+    $('.ui.form').form({
+        fields: {
+            title: {
+                identifier: 'name', /*title : 表单的name值*/
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入分类内容'
+                }]
+            }
+        }
+    });
+
+    //消息提示关闭的初始化
+    $('.message .close').on('click',function () {
+        $(this).closest('.message').transition('fade');
+    })
+
+</script>
+
+</body>
+</html>
