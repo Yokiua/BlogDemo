@@ -7,11 +7,8 @@
     <title>标签管理</title>
 </head>
 <body>
-<!-- stackable ：适配小屏幕 -->
-
 <!-- 导航 -->
 <nav th:replace="admin/_fragmentsAdmin :: menu(3)"></nav>
-
 <!--二级导航-->
 <div class="ui attached pointing menu">
     <div class="ui container">
@@ -22,11 +19,9 @@
     </div>
 </div>
 <br>
-
 <!-- 中间内容 -->
 <div class="m-container-small m-padded-tb-big-3">
     <div class="ui container">
-
         <!--表格 celled:添加网格-->
         <table class="ui compact teal table">
             <thead>
@@ -54,12 +49,10 @@
         </table>
     </div>
 </div>
-
 <br>
 <!-- 底部-->
 <footer th:replace="admin/_fragmentsAdmin :: footer">
 </footer>
-
 <script>
     //默认调用分页查询方法,并且是第一页
     page(1);
@@ -133,6 +126,5 @@
         $(this).closest('.message').transition('fade');
     })
 </script>
-
 </body>
 </html>

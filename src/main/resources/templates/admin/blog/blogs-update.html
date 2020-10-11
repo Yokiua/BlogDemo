@@ -7,11 +7,8 @@
     <title>博客修改</title>
 </head>
 <body>
-<!-- stackable ：适配小屏幕 -->
-
 <!-- 导航 -->
 <nav th:replace="admin/_fragmentsAdmin :: menu(1)"></nav>
-
 <!--二级导航-->
 <div class="ui attached pointing menu">
     <div class="ui container">
@@ -22,16 +19,12 @@
     </div>
 </div>
 <br>
-
 <!-- 中间内容 -->
 <div class="m-container m-padded-tb-big-3">
     <div class="ui container">
-
         <form action="#" method="post" class="ui form" id="form" th:object="${blog}">
-
             <!-- 修改博客的id -->
             <input type="hidden" name="id" th:value="*{id}">
-
             <!--标题 : required : 表单校验(必须输入内容)-->
             <div class="required field">
                 <div class="ui left labeled input">
@@ -48,7 +41,6 @@
                     <input type="text" name="title" placeholder="标题" id="title" th:value="*{title}">
                 </div>
             </div>
-
             <!--编辑内容部分-->
             <div class="required field">
                 <!-- z-index: 1 : 让编辑器在最上层,为了让编辑器全屏后覆盖页面-->
@@ -58,7 +50,6 @@
                     th:text="*{content}"></textarea>
                 </div>
             </div>
-
             <!--分类和标签-->
             <div class="two fields">
                 <!--分类-->
@@ -72,8 +63,6 @@
                             <div class="menu" id="types">
                                 <div th:each="type : ${types}" class="item" data-value="3" th:data-value="${type.id}" th:text="${type.name}">java</div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -96,7 +85,6 @@
                     </div>
                 </div>
             </div>
-
             <!--博客的首图引用地址-->
             <div class="required field">
                 <div class="ui left labeled input">
@@ -105,13 +93,11 @@
                     th:value="*{firstPicture}">
                 </div>
             </div>
-
             <!--博客描述-->
             <div class="field">
                 <textarea name="description" id="description" placeholder="博客描述"
                 th:text="*{description}"></textarea>
             </div>
-
             <!--博客展示内容的开关-->
             <div class="inline fields">
                 <div class="field">
@@ -128,16 +114,11 @@
                         <label for="comment">评论</label>
                     </div>
                 </div>
-
             </div>
-
             <!--表单校验的提示 error message : 默认就会寻找错误信息-->
             <div class="ui error message"></div>
-
             <!--隐藏域(当点击保存,给false,点击发布,给true)-->
             <input type="hidden" name="published" id="published">
-
-
             <!--按钮(返回保存发布)-->
             <div class="ui right aligned container">
                 <!-- window.history.go(-1) : 返回上一张页面-->
@@ -147,10 +128,8 @@
             </div>
 
         </form>
-
     </div>
 </div>
-
 <br>
 <!-- 底部 -->
 <footer th:replace="admin/_fragmentsAdmin :: footer"></footer>
@@ -158,7 +137,6 @@
 <link rel="stylesheet" href="../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
 <!-- editor 的引入-->
 <script src="/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
-
 <!-- 初始化相关 -->
 <script>
     var contentEditor;

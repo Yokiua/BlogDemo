@@ -7,8 +7,6 @@
     <title>标签新增</title>
 </head>
 <body>
-<!-- stackable ：适配小屏幕 -->
-
 <!-- 导航 -->
 <nav th:replace="admin/_fragmentsAdmin :: menu(3)"></nav>
 <!--二级导航-->
@@ -23,7 +21,7 @@
 <br>
 <br>
 <br>
-
+<br>
 <!-- 中间内容 -->
 <div class="m-container-small m-padded-tb-big-3">
     <div class="ui container">
@@ -48,16 +46,15 @@
         </form>
     </div>
 </div>
-
+<br>
+<br>
 <br>
 <br>
 <br>
 <!-- 底部 -->
 <footer th:replace="admin/_fragmentsAdmin :: footer"></footer>
-
 <!-- editormd 的引入-->
 <script src="../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
-
 <script>
 
     $(".menu.toggle").click(function () {
@@ -86,6 +83,5 @@
     })
 
 </script>
-
 </body>
 </html>

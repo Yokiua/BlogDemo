@@ -44,7 +44,7 @@
         select *,t.id tid,t.name tname from t_blog b,t_type t where 1=1
         <!--<where>-->
             <if test="title!=null">
-                and b.title = #{title}
+                and b.title  like CONCAT('%', #{title}, '%')
             </if>
             <if test="type_id!=null">
                 and b.type_id = #{type_id}

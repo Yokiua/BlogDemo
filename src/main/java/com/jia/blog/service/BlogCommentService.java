@@ -7,7 +7,6 @@ import java.util.List;
  * 管理评论功能的用户接口
  */
 public interface BlogCommentService {
-
     /*--------------------Select-------------------*/
     /**
      * 获取博客对应的所有的父评论

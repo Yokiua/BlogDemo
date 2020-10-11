@@ -7,11 +7,8 @@
     <title>博客管理</title>
 </head>
 <body>
-<!-- stackable ：适配小屏幕 -->
-
 <!-- 导航 -->
 <nav th:replace="admin/_fragmentsAdmin :: menu(1)"></nav>
-
 <!--二级导航-->
 <div class="ui attached pointing menu">
     <div class="ui container">
@@ -22,7 +19,6 @@
     </div>
 </div>
 <br>
-
 <!-- 中间内容 -->
 <div class="m-container-small m-padded-tb-big-3">
     <div class="ui container">
@@ -117,81 +113,83 @@
         </table>
     </div>
 </div>
-
 <br>
 <!-- 底部-->
 <footer th:replace="admin/_fragmentsAdmin :: footer">
 </footer>
-
 <script>
-
     //默认调用分页查询方法,并且是第一页
     page(1);
     types();
-
     //条件查询的方法
     function formQuery(pageNum) {
-        $.get("blogs/queryFrom",$("form").serialize()+"&"+"pageNum="+pageNum,function (pagelist) {
-            var html = '';
-            var recommend;
-            var published; //是否发布
-            /* 内容列表*/
-            for (var i = 0; i < pagelist.size; i++) {
-                /*判断是否推荐*/
-                if (pagelist.list[i].recommend){
-                    recommend = "是";
-                }else {
-                    recommend = "后";
+        //首先判断是否输入内容
+        var $title = $("#title").val();
+        var $typeId = $("#type_id").val();
+        if ($title != "" || $typeId != ""){
+            //有内容时，再进行查询
+            $.get("blogs/queryFrom",$("form").serialize()+"&"+"pageNum="+pageNum,function (pagelist) {
+                var html = '';
+                var recommend;
+                var published; //是否发布
+                /!* 内容列表*!/
+                for (var i = 0; i < pagelist.size; i++) {
+                    /!*判断是否推荐*!/
+                    if (pagelist.list[i].recommend){
+                        recommend = "是";
+                    }else {
+                        recommend = "后";
+                    }
+                    if (pagelist.list[i].published){
+                        published = "发布";
+                    }else {
+                        published = "保存";
+                    }
+                    html+='<tr>\n' +
+                        '<td>'+(i+1)+'</td>\n' +
+                        '<td>'+pagelist.list[i].title+'</td>\n' +
+                        '<td>'+pagelist.list[i].type.name+'</td>\n' +
+                        '<td>'+recommend+'</td>\n' +
+                        '<td>'+published+'</td>\n' +
+                        '<td>'+pagelist.list[i].updateTime+'</td>\n' +
+                        '<td>\n' +
+                        '<a href="blogs/updateBlog/'+pagelist.list[i].id+'" class="ui mini teal basic button">编辑</a>\n' +
+                        '<a onclick="remove('+pagelist.list[i].id+')" class="ui mini red basic button">删除</a>\n' +
+                        '</td>\n' +
+                        '</tr>'
                 }
-                if (pagelist.list[i].published){
-                    published = "发布";
+                $("#page").html(html);
+
+                var html2 = '';
+
+                /!*分页条相关*!/
+                if (pageNum == 1){  /!*上一页*!/
+                    html2 += '<a class="icon item""><i class="left chevron icon"></i></a>'
                 }else {
-                    published = "保存";
+                    html2 += '<a class="icon item" onclick="formQuery('+(pageNum-1)+')"><i class="left chevron icon"></i></a>'
                 }
-                html+='<tr>\n' +
-                    '<td>'+(i+1)+'</td>\n' +
-                    '<td>'+pagelist.list[i].title+'</td>\n' +
-                    '<td>'+pagelist.list[i].type.name+'</td>\n' +
-                    '<td>'+recommend+'</td>\n' +
-                    '<td>'+published+'</td>\n' +
-                    '<td>'+pagelist.list[i].updateTime+'</td>\n' +
-                    '<td>\n' +
-                    '<a href="blogs/updateBlog?id='+pagelist.list[i].id+'" class="ui mini teal basic button">编辑</a>\n' +
-                    '<a onclick="remove('+pagelist.list[i].id+')" class="ui mini red basic button">删除</a>\n' +
-                    '</td>\n' +
-                    '</tr>'
-            }
-            $("#page").html(html);
 
-            var html2 = '';
+                for (var pp = 1; pp <= pagelist.pages ; pp++) {
+                    if (pp == pageNum){ //当页面的码数和pageNum的码数一致时,就让它为选中状态
+                        html2 += '<a class="item active" onclick="formQuery('+pp+')">'+pp+'</a>';
+                    }else {
+                        html2 += '<a class="item" onclick="formQuery('+pp+')">'+pp+'</a>';
+                    }
+                }
 
-            /*分页条相关*/
-            if (pageNum == 1){  /*上一页*/
-                html2 += '<a class="icon item""><i class="left chevron icon"></i></a>'
-            }else {
-                html2 += '<a class="icon item" onclick="formQuery('+(pageNum-1)+')"><i class="left chevron icon"></i></a>'
-            }
-
-            for (var pp = 1; pp <= pagelist.pages ; pp++) {
-                if (pp == pageNum){ //当页面的码数和pageNum的码数一致时,就让它为选中状态
-                    html2 += '<a class="item active" onclick="formQuery('+pp+')">'+pp+'</a>';
+                if (pageNum == pagelist.pages){
+                    html2 += ' <a class="icon item">'+'<i class="right chevron icon"></i>'+'</a>'
                 }else {
-                    html2 += '<a class="item" onclick="formQuery('+pp+')">'+pp+'</a>';
+                    html2 += ' <a class="icon item" onclick="formQuery('+(pageNum+1)+')">'+'<i class="right chevron icon"></i>'+'</a>'
                 }
-            }
 
-            if (pageNum == pagelist.pages){
-                html2 += ' <a class="icon item">'+'<i class="right chevron icon"></i>'+'</a>'
-            }else {
-                html2 += ' <a class="icon item" onclick="formQuery('+(pageNum+1)+')">'+'<i class="right chevron icon"></i>'+'</a>'
-            }
-
-            html2 += '<a class="item">共'+pagelist.pages+'页'+pagelist.total+'条数据</a>'
-            $("#pages").html(html2);
-        },"json");
-
+                html2 += '<a class="item">共'+pagelist.pages+'页'+pagelist.total+'条数据</a>'
+                $("#pages").html(html2);
+            },"json");
+        }else {
+            alert("请输入搜索内容")
+        }
     }
-
     //分页内容显示功能
     function page(pageNum){
         $.get("blogs/page",{pageNum:pageNum},function (pagelist) {
@@ -219,7 +217,7 @@
                     '<td>' + published + '</td>\n' +
                     '<td>' + pagelist.list[i].updateTime + '</td>\n' +
                     '<td>\n' +
-                    '<a href="blogs/updateBlog?id='+pagelist.list[i].id+'" class="ui mini teal basic button">编辑</a>\n' +
+                    '<a href="blogs/updateBlog/'+pagelist.list[i].id+'" class="ui mini teal basic button">编辑</a>\n' +
                     '<a onclick="remove(' + pagelist.list[i].id + ')" class="ui mini red basic button">删除</a>\n' +
                     '</td>\n' +
                     '</tr>'
@@ -267,7 +265,6 @@
             });
         }
     }
-
     //显示分类的方法
     function types(){
 
@@ -281,7 +278,6 @@
             $("#types").html(typesHtml);
         },"json");
     }
-
     $(".menu.toggle").click(function () {
         $(".m-item").toggleClass("m-mobile-hide")
     });

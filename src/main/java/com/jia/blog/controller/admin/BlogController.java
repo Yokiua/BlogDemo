@@ -102,7 +102,6 @@ public class BlogController {
     @GetMapping("/blogs/queryFrom")
     @ResponseBody
     public String queryFrom(Blog blog, Integer pageNum) throws JsonProcessingException {
-
         if ("".equals(blog.getTitle())){
             blog.setTitle(null);
         }
@@ -168,8 +167,8 @@ public class BlogController {
      * @param id 修改博客的id
      * @return 返回是否修改成功(使用引擎模板渲染)
      */
-    @GetMapping("/blogs/updateBlog")
-    public String updateBlog(Long id,Model model){
+    @GetMapping("/blogs/updateBlog/{id}")
+    public String updateBlog(@PathVariable Long id,Model model){
         Blog blog = blogService.getBlog(id);
         //分类查询
         model.addAttribute("types",typeService.listAllType());
@@ -177,13 +176,13 @@ public class BlogController {
         model.addAttribute("tags",tagService.listAllTag());
         //存储博客
         model.addAttribute("blog",blog);
-        return "/admin/blog/blogs-update";
+        return "admin/blog/blogs-update";
     }
 
-    @GetMapping("/blog/update")
+    /*@GetMapping("/blog/update")
     public String update(){
         return "/admin/blog/blogs-update";
-    }
+    }*/
 
     /**
      * 修改博客(操作数据库)
