@@ -22,7 +22,6 @@ public interface TagMapper extends Mapper<Tag> {
     @Insert("insert into t_tag values(#{id},#{name})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")/*增加这个注解插入记录后会返回自增长的id*/
     int saveTag(Tag tag);
-
     /*--------------------Select-------------------*/
     /**
      * 查询 一个标签
@@ -88,4 +87,11 @@ public interface TagMapper extends Mapper<Tag> {
      */
     @Delete("delete from t_tag where id=#{id}")
     int reomveTag(Long id);
+
+    /**
+     * 删除中间表(删除博客对应的标签)
+     * @param id 博客的id
+     */
+    @Delete("DELETE FROM t_blog_tags WHERE blogsId=#{id}")
+    void deleteByBlog_Tags_Count(Long id);
 }

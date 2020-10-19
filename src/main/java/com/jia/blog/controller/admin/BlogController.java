@@ -118,15 +118,12 @@ public class BlogController {
     @ResponseBody
     public boolean removeBlog(Long id){
         int i = blogService.removeBlog(id);
+        //修改后，清空Redis数据库
         if (i != 0 ){
-            //删除redis的数据 (获取的全部、最新推荐、分类、标签、博客数量、博客归档)
-            redisUtil.del("allBlogs");
-            redisUtil.del("allTypes");
-            redisUtil.del("allTags");
-            redisUtil.del("newBlogs");
-            redisUtil.del("blogCount");
+            redisUtil.delectFindAll();
+            return true;
         }
-        return i != 0;
+        return false;
     }
 
     /*--------------------Insert-------------------*/
@@ -148,17 +145,13 @@ public class BlogController {
         blog.setTags(tagService.listByIdsTag(blog.getTagIds()));
         //将博客内容存储到数据库
         int i = blogService.saveBlog(blog);
+        //修改完毕之后，把redis中的数据删掉
         if (i!=0){
-            //删除redis的数据 (获取的全部、最新推荐、分类、标签、博客数量)
-            for (int y = 0; y < 10; y++) { //默认删除10条
-                redisUtil.del("allBlogs_"+y);
-            }
-            redisUtil.del("allTypes");
-            redisUtil.del("allTags");
-            redisUtil.del("newBlogs");
-            redisUtil.del("blogCount");
+            //清空Redis数据库
+            redisUtil.delectFindAll();
+            return true;
         }
-        return i != 0;
+        return false;
     }
 
     /*--------------------Update-------------------*/
@@ -179,28 +172,21 @@ public class BlogController {
         return "admin/blog/blogs-update";
     }
 
-    /*@GetMapping("/blog/update")
-    public String update(){
-        return "/admin/blog/blogs-update";
-    }*/
-
     /**
      * 修改博客(操作数据库)
      * @return 返回布尔(是否修改成功)
      */
-    @PostMapping("/blogs/updateBlog2")
+    @PostMapping("/blogs/updateBlog/update")
     @ResponseBody
     public Boolean updateBlog2(Blog blog) throws JsonProcessingException {
         blog.setUpdateTime(new Date());
         int i = blogService.updateBlog(blog);
         //修改完毕之后，把redis中的数据删掉
         if (i!=0){
-            //删除redis的数据 (获取的全部、最新推荐、分类、标签)
-            redisUtil.del("allBlogs");
-            redisUtil.del("allTypes");
-            redisUtil.del("allTags");
-            redisUtil.del("newBlogs");
+           //清空Redis数据库
+            redisUtil.delectFindAll();
+            return true;
         }
-        return i != 0;
+        return false;
     }
 }

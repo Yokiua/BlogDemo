@@ -81,15 +81,13 @@ public class TagController {
     @ResponseBody
     public Boolean removeTag(Long id){
         int i = tagService.reomveTag(id);
-        if (i != 0){
-            //删除redis的数据 (获取的全部、最新推荐、分类、标签、标签对应的博客)
-            redisUtil.del("allBlogs");
-            redisUtil.del("allTypes");
-            redisUtil.del("allTags");
-            redisUtil.del("newBlogs");
-            redisUtil.del("tag_blog_"+id);
+        //修改完毕之后，把redis中的数据删掉
+        if (i!=0){
+            //清空Redis数据库
+            redisUtil.delectFindAll();
+            return true;
         }
-        return i!=0;
+        return false;
     }
 
     /*--------------------Insert-------------------*/
@@ -118,11 +116,8 @@ public class TagController {
             attributes.addFlashAttribute("message","新增失败");
         }else {
             attributes.addFlashAttribute("message","新增成功");
-            //删除redis的数据 (获取的全部、最新推荐、分类、标签、标签对应的博客)
-            redisUtil.del("allBlogs");
-            redisUtil.del("allTypes");
-            redisUtil.del("allTags");
-            redisUtil.del("newBlogs");
+            //修改完毕之后,清空Redis数据库
+            redisUtil.delectFindAll();
         }
         return "redirect:/admin/tags";
     }
@@ -166,12 +161,8 @@ public class TagController {
             attributes.addFlashAttribute("message","更新失败");
         }else {
             attributes.addFlashAttribute("message","更新成功");
-            //删除redis的数据 (获取的全部、最新推荐、分类、标签、标签对应的博客)
-            redisUtil.del("allBlogs");
-            redisUtil.del("allTypes");
-            redisUtil.del("allTags");
-            redisUtil.del("newBlogs");
-            redisUtil.del("tag_blog_"+id);
+            //修改完毕之后,清空Redis数据库
+            redisUtil.delectFindAll();
         }
         return "redirect:/admin/tags";
     }

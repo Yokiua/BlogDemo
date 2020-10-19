@@ -42,6 +42,14 @@ public class RedisUtil {
     }
 
     /**
+     * 清空Redis数据库中的所有数据
+     */
+    public void delectFindAll(){
+        Set<String> keys = redisTemplate.keys("*");
+        redisTemplate.delete(keys);
+    }
+
+    /**
      * 根据key 获取过期时间
      * @param key 键 不能为null
      * @return 时间(秒) 返回0代表为永久有效

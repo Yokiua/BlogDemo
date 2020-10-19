@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jia.blog.excetion.NotFondExcetion;
 import com.jia.blog.mapper.BlogMapper;
+import com.jia.blog.mapper.TagMapper;
 import com.jia.blog.pojo.Blog;
 import com.jia.blog.pojo.Type;
 import com.jia.blog.pojo.User;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +28,9 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogMapper blogMapper;
+
+    @Autowired
+    private TagMapper tagMapper;
 
     @Autowired
     private UserService userService;
@@ -256,9 +261,7 @@ public class BlogServiceImpl implements BlogService {
         blog.setCreateTime(new Date());
         blog.setUpdateTime(new Date());
         blog.setViews(0);
-
         int flag = blogMapper.saveBlog(blog);
-
         //再把博客对应的id存入到中间表
         List<Long> tagIds = tagService.convertToList(blog.getTagIds());
         for (Long tagId : tagIds) {
@@ -282,25 +285,57 @@ public class BlogServiceImpl implements BlogService {
     }
 
     /**
-     * 修改
+     * 修改 博客 (并添加 博客和标签的中间表 数据 )
      * @param blog 实体类
      * @return 影响的行数
      */
     @Override
     @Transactional
     public int updateBlog(Blog blog) throws JsonProcessingException {
-        return blogMapper.updateBlog(blog);
+        int i = blogMapper.updateBlog(blog);
+        if (i != 0){
+            //当修改完成之后，更新tag_blog的中间表
+              //1.首先删除博客对应的标签
+            tagMapper.deleteByBlog_Tags_Count(blog.getId());
+              //2.再更新博客对应的标签
+            List<Long> tagIds = convertToList(blog.getTagIds());
+            for (Long tagId : tagIds) {
+                blogMapper.saveBlog_Tag(blog.getId(),tagId);
+            }
+        }
+        return i;
     }
 
     /*--------------------Delete-------------------*/
     /**
-     * 删除
+     * 删除博客 (并添加 博客和标签的中间表 数据 )
      * @param id 删除的id
      * @return 影响的行数
      */
     @Override
     @Transactional
     public int removeBlog(Long id) {
-        return blogMapper.removeBlog(id);
+        int i = blogMapper.removeBlog(id);
+        if (i != 0){
+            //当修改完成之后，更新tag_blog的中间表
+            tagMapper.deleteByBlog_Tags_Count(id);
+        }
+        return i;
+    }
+
+    /**
+     * 把字符串转换成数组的方法(,分割)
+     * @param ids 字符串数组
+     * @return 返回集合
+     */
+    public List<Long> convertToList(String ids){
+        List<Long> list = new ArrayList<Long>();
+        if (!"".equals(ids) && ids != null){
+            String[] idArray = ids.split(",");
+            for (int i = 0; i < idArray.length; i++) {
+                list.add(new Long(idArray[i]));
+            }
+        }
+        return list;
     }
 }

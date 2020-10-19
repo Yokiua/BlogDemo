@@ -216,7 +216,7 @@
         var firstPicture = $("#firstPicture").val();
         var description = $("#description").val();
         if (title != "" && content != "" && firstPicture != "" && description != ""){
-            $.post("updateBlog2",$("#form").serialize(),function (data) {
+            $.post("update",$("#form").serialize(),function (data) {
                 if (data){
                     alert("操作成功!")
                     //重定向
